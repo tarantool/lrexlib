@@ -1,3 +1,4 @@
+#!/usr/bin/env tarantool
 -- See Copyright Notice in the file LICENSE
 
 do

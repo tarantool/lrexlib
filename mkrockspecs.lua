@@ -1,6 +1,5 @@
 -- Generate rockspecs from a prototype with variants
 
-local tree = require "std.tree"
 
 if select ("#", ...) < 2 then
   io.stderr:write "Usage: mkrockspecs PACKAGE VERSION\n"
@@ -30,6 +29,17 @@ function format (x, indent)
   end
 end
 
+local function merge_tables(...)
+  local res = {}
+  for i = 1, select('#', ...) do
+    local t = select(i, ...)
+    for k, v in pairs(t) do
+      res[k] = v
+    end
+  end
+  return res
+end
+
 flavour = "" -- a global, visible in loadfile
 for f, spec in pairs (loadfile ("rockspecs.lua") ()) do
   if f ~= "default" then
@@ -38,7 +48,7 @@ for f, spec in pairs (loadfile ("rockspecs.lua") ()) do
     assert (h)
     flavour = f
     local specs = loadfile ("rockspecs.lua") () -- reload to get current flavour interpolated
-    local spec = tree.merge (tree (specs.default), tree (specs[f]))
+    local spec = merge_tables(specs.default, specs[f])
     local s = ""
     for i, v in pairs (spec) do
       s = s..i.." = "..format (v, "  ").."\n"

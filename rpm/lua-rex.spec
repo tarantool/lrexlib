@@ -1,4 +1,4 @@
-Name:           lrexlib
+Name:           tarantool-lrexlib
 # During package building {version} is overwritten by Packpack with
 # VERSION. It is set to major.minor.patch.number_of_commits_above_last_tag.
 # major.minor.patch tag and number of commits above are taken from the
@@ -24,7 +24,7 @@ BuildRequires:  tarantool-devel >= 1.9.0.0
 BuildRequires:  luarocks
 Requires:       tarantool >= 1.9.0.0
 Requires:       pcre
-Provides:       lrexlib-pcre = %{version}
+Provides:       tarantool-lrexlib-pcre = %{version}
 
 %description pcre
 Binding of PCRE library
@@ -37,7 +37,7 @@ BuildRequires:  tarantool-devel >= 1.9.0.0
 BuildRequires:  luarocks
 Requires:       tarantool >= 1.9.0.0
 Requires:       pcre2
-Provides:       lrexlib-pcre2 = %{version}
+Provides:       tarantool-lrexlib-pcre2 = %{version}
 
 %description pcre2
 Binding of PCRE2 library
@@ -48,7 +48,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  tarantool-devel >= 1.9.0.0
 BuildRequires:  luarocks
 Requires:       tarantool >= 1.9.0.0
-Provides:       lrexlib-posix = %{version}
+Provides:       tarantool-lrexlib-posix = %{version}
 
 %description posix
 Binding of POSIX library
@@ -59,7 +59,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  tarantool-devel >= 1.9.0.0
 BuildRequires:  luarocks
 Requires:       tarantool >= 1.9.0.0
-Provides:       lrexlib-gnu = %{version}
+Provides:       tarantool-lrexlib-gnu = %{version}
 
 %description gnu
 Binding of GNU library
@@ -72,7 +72,7 @@ BuildRequires:  tarantool-devel >= 1.9.0.0
 BuildRequires:  luarocks
 Requires:       oniguruma
 Requires:       tarantool >= 1.9.0.0
-Provides:       lrexlib-oniguruma = %{version}
+Provides:       tarantool-lrexlib-oniguruma = %{version}
 
 %description oniguruma
 Binding of Oniguruma library
@@ -85,7 +85,7 @@ Binding of Oniguruma library
 #BuildRequires:  luarocks
 #Requires:       tre
 #Requires:       tarantool >= 1.9.0.0
-#Provides:       lrexlib-tre = %{version}
+#Provides:       tarantool-lrexlib-tre = %{version}
 
 #%description tre
 #Binding of TRE library

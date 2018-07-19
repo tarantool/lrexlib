@@ -30,7 +30,7 @@ script:
   - git describe --tags
   - git clone https://github.com/packpack/packpack.git packpack;
   - VERSION=`git describe --tags | sed -e 's/^rel-\(.*\)-.*/\1/' -e 's/-/./g'`
-  - VERSION=$VERSION RELEASE=$RELEASE packpack/packpack;
+  - VERSION=$VERSION packpack/packpack;
 
 before_deploy:
   - ls -l build/

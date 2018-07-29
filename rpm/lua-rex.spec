@@ -142,34 +142,31 @@ LIB=%{_lib}
     %endif
 %endif
 
-for i in pcre pcre2 posix gnu; do
-    mkdir -p %{buildroot}%{_datadir}/tarantool/$i
-    cp -P tree/${LIB}/lua/${LUA_VER}/rex_$i.so %{buildroot}%{_datadir}/tarantool/$i/rex_$i.so
+mkdir -p %{buildroot}%{_libdir}/tarantool
+for i in pcre pcre2 posix gnu onig; do
+    cp -P tree/${LIB}/lua/${LUA_VER}/rex_$i.so %{buildroot}%{_libdir}/tarantool/rex_$i.so
 done
-
-mkdir -p %{buildroot}%{_datadir}/tarantool/oniguruma
-cp -P tree/${LIB}/lua/${LUA_VER}/rex_onig.so %{buildroot}%{_datadir}/tarantool/oniguruma
 
 %check
 make %{?_smp_mflags} test
 
 %files pcre
-%{_datadir}/tarantool/pcre
+%{_libdir}/tarantool/rex_pcre.so
 
 %files pcre2
-%{_datadir}/tarantool/pcre2
+%{_libdir}/tarantool/rex_pcre2.so
 
 %files posix
-%{_datadir}/tarantool/posix
+%{_libdir}/tarantool/rex_posix.so
 
 %files gnu
-%{_datadir}/tarantool/gnu
+%{_libdir}/tarantool/rex_gnu.so
 
 %files oniguruma
-%{_datadir}/tarantool/oniguruma
+%{_libdir}/tarantool/rex_onig.so
 
 #%files tre
-#%{_datadir}/tarantool/tre/
+#%{_libdir}/tarantool/rex_tre.so
 
 %changelog
 * Tue Jul 10 2018 Ivan Koptelov <ivan.koptelov@tarantool.org> - 2.9.0-1

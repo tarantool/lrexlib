@@ -19,6 +19,9 @@ env:
       - OS=el DIST=7
       - OS=fedora DIST=26
       - OS=fedora DIST=27
+      - OS=fedora DIST=28
+      - OS=fedora DIST=29
+      - OS=fedora DIST=30
 
 script:
   # lrexlib has a major-minor-patch versioning with annotated tags.
@@ -60,6 +63,16 @@ deploy:
   - provider: packagecloud
     username: ${PACKAGECLOUD_USER}
     repository: "2x"
+    token: ${PACKAGECLOUD_TOKEN}
+    dist: ${OS}/${DIST}
+    package_glob: build/*.{rpm,deb}
+    skip_cleanup: true
+    on:
+      branch: master
+      condition: -n "${OS}" && -n "${DIST}" && -n "${PACKAGECLOUD_TOKEN}"
+  - provider: packagecloud
+    username: ${PACKAGECLOUD_USER}
+    repository: "2_2"
     token: ${PACKAGECLOUD_TOKEN}
     dist: ${OS}/${DIST}
     package_glob: build/*.{rpm,deb}

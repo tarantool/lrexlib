@@ -96,6 +96,7 @@ Binding of Oniguruma library
 %build
 tarantool mkrockspecs.lua lrexlib %{version}
 ls
+ls -l /usr/include/tarantool
 mkdir tree
 for i in pcre pcre2 posix oniguruma gnu; do
 	TMP=$PWD/tmp luarocks --local --tree=./tree make lrexlib-$i-%{version}-1.rockspec \

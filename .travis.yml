@@ -4,6 +4,10 @@ services:
 
 language: python
 
+cache:
+    directories:
+      - $HOME/.cache
+
 git:
     depth: 100500
 

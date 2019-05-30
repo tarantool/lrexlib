@@ -94,15 +94,17 @@ Binding of Oniguruma library
 %setup -q -n lrexlib-%{version}
 
 %build
+# Workaround the luarocks caching problem.
+# https://github.com/luarocks/luarocks/issues/901
+unset USER
 tarantool mkrockspecs.lua lrexlib %{version}
 ls
-ls -l /usr/include/tarantool
 mkdir tree
 for i in pcre pcre2 posix oniguruma gnu; do
-	TMP=$PWD/tmp luarocks --local --tree=./tree make lrexlib-$i-%{version}-1.rockspec \
-	CFLAGS="%{optflags} -fPIC -DLUA_COMPAT_APIINTCASTS -I%{_prefix}/include/tarantool" \
-	PCRE_LIBDIR=%{_libdir} PCRE2_LIBDIR=%{_libdir} ONIG_LIBDIR=%{_libdir} \
-	TRE_LIBDIR=%{_libdir} TRE_INCDIR=/usr/include
+    TMP=$PWD/tmp luarocks --local --tree=./tree make lrexlib-$i-%{version}-1.rockspec \
+        CFLAGS="%{optflags} -fPIC -DLUA_COMPAT_APIINTCASTS -I%{_prefix}/include/tarantool" \
+        PCRE_LIBDIR=%{_libdir} PCRE2_LIBDIR=%{_libdir} ONIG_LIBDIR=%{_libdir} \
+        TRE_LIBDIR=%{_libdir} TRE_INCDIR=/usr/include
 done
 
 %install
